@@ -5,7 +5,10 @@ import Home from "./components/Home";
 import People from "./components/People";
 import Planets from "./components/Planets";
 import Starships from "./components/Starships";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
+
+import { GlobalStyles } from "./styles/GlobalStyles";
+import { Container } from "./styles/Container";
 
 class App extends Component {
   constructor(props) {
@@ -44,9 +47,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Container>
         <Router>
-          <Navbar />
+          <Header />
 
           <Switch>
             <Route exact path="/">
@@ -63,7 +66,9 @@ class App extends Component {
             </Route>
           </Switch>
         </Router>
-      </div>
+
+        <GlobalStyles />
+      </Container>
     );
   }
 }
