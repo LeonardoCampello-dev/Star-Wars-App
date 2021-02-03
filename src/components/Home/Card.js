@@ -8,6 +8,7 @@ export const Card = styled.div`
 
   width: 70rem;
   height: 25rem;
+
   border-radius: 4rem;
 
   display: flex;
@@ -24,5 +25,25 @@ export const Card = styled.div`
 
   &:hover {
     transform: translateY(-0.2rem);
+  }
+
+  @media (max-width: 725px) {
+    width: 55rem;
+  }
+
+  @media (max-width: 555px) {
+    width: 40rem;
+    height: 20rem;
+
+    font-size: 2.8rem;
+    line-height: 3.8rem;
+  }
+
+  @media (max-width: 410px) {
+    width: 31.2rem;
+    height: 15rem;
+
+    font-size: 2rem;
+    line-height: 3rem;
   }
 `;

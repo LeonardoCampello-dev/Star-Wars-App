@@ -44,4 +44,10 @@ export const GlobalStyles = createGlobalStyle`
   .title {
     font-family: 'Roboto', sans-serif;
   }
+
+  @media (min-width: 700px) {
+    :root {
+      font-size: 62.5%;
+    }
+  }
 `;

@@ -21,4 +21,16 @@ export const HeaderLogo = styled.header`
 
     margin-left: 1.6rem;
   }
+
+  @media (max-width: 350px) {
+    h1 {
+      font-size: 2.4rem;
+      line-height: 3.4rem;
+    }
+
+    img {
+    width: 4rem;
+    height: 4rem;
+  }
+  }
 `;
