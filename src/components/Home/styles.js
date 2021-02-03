@@ -9,7 +9,5 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  row-gap: 1.6rem;
-
   margin-bottom: 3.2rem;
 `;

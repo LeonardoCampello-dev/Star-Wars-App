@@ -23,6 +23,8 @@ export const Card = styled.div`
 
   transition: 0.2s;
 
+  margin-bottom: 1.6rem;
+
   &:hover {
     transform: translateY(-0.2rem);
   }
