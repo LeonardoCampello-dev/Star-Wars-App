@@ -16,4 +16,8 @@ export const Card = styled.div`
 
   justify-items: center;
   align-items: center;
+
+  position: relative;
+
+  text-align: center;
 `;

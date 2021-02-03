@@ -20,7 +20,9 @@ class Planets extends Component {
             >
               <Name>{planet.name}</Name>
 
-              {planet.population === "unknown" ? null : (
+              {planet.population === "unknown" ? (
+                <Population>Population: Unknown</Population>
+              ) : (
                 <Population>Population: {planet.population}</Population>
               )}
 
