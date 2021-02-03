@@ -12,33 +12,36 @@ class Planets extends Component {
     return (
       <CardSection>
         {this.props.data.map((planet, index) => {
+          const { name, population, diameter, climate, terrain } = planet;
+
           return (
             <Card
               boxShadowColor="#2FBC1B"
               gridTemplateRows="3.6rem 6rem 5.2rem 6rem 8rem"
               cardHeight="32rem"
+              key={index}
             >
-              <Name>{planet.name}</Name>
+              <Name>{name}</Name>
 
-              {planet.population === "unknown" ? (
+              {population === "unknown" ? (
                 <Population>Population: Unknown</Population>
               ) : (
-                <Population>Population: {planet.population}</Population>
+                <Population>Population: {population}</Population>
               )}
 
               <Diameter>
                 <img src={diameterIconSVG} alt="Diameter" />
-                {planet.diameter}km
+                {diameter}km
               </Diameter>
 
-              <Climate climate={planet.climate}>
-                Climate: {planet.climate.replace(", ", " and ")}
+              <Climate climate={climate}>
+                Climate: {climate.replace(", ", " and ")}
               </Climate>
 
               <Terrain>
                 <h4>Terrain</h4>
 
-                <p>{planet.terrain}</p>
+                <p>{terrain}</p>
               </Terrain>
             </Card>
           );

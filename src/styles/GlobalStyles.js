@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
@@ -51,3 +51,5 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 `;
+
+export default GlobalStyles;

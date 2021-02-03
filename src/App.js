@@ -7,8 +7,8 @@ import Planets from "./components/Planets";
 import Starships from "./components/Starships";
 import Header from "./components/Header";
 
-import { GlobalStyles } from "./styles/GlobalStyles";
-import { Container } from "./styles/Container";
+import GlobalStyles from "./styles/GlobalStyles";
+import Container from "./styles/Container";
 
 class App extends Component {
   constructor(props) {
@@ -39,10 +39,14 @@ class App extends Component {
     this.setState({ starships: data.results });
   }
 
-  async componentDidMount() {
+  async fetchAllData() {
     await this.fetchPeople();
     await this.fetchPlanets();
     await this.fetchStarships();
+  }
+
+  async componentDidMount() {
+    await this.fetchAllData();
   }
 
   render() {

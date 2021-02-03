@@ -27,31 +27,32 @@ class People extends Component {
     return (
       <CardSection>
         {this.props.data.map((person, index) => {
+          const { name, mass, height, hair_color, skin_color, gender } = person;
+
           return (
             <Card
               boxShadowColor="var(--yellow-color)"
               gridTemplateRows="repeat(4, 1fr)"
+              key={index}
             >
-              <Name>{person.name}</Name>
+              <Name>{name}</Name>
 
               <WeightAndHeight>
-                <div>{person.mass}kg</div>
-                <div>{person.height}cm</div>
+                <div>{mass}kg</div>
+                <div>{height}cm</div>
               </WeightAndHeight>
 
               <HairAndSkin>
                 <div className="hair-color">
-                  {person.hair_color === "n/a" || person.hair_color === "none"
+                  {hair_color === "n/a" || hair_color === "none"
                     ? null
-                    : `Hair color: ${person.hair_color}`}
+                    : `Hair color: ${hair_color}`}
                 </div>
 
-                <div className="skin-color">
-                  Skin color: {person.skin_color}
-                </div>
+                <div className="skin-color">Skin color: {skin_color}</div>
               </HairAndSkin>
 
-              <Gender>{this.checkGender(person.gender)}</Gender>
+              <Gender>{this.checkGender(gender)}</Gender>
             </Card>
           );
         })}

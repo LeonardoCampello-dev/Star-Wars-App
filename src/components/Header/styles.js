@@ -29,8 +29,8 @@ export const HeaderLogo = styled.header`
     }
 
     img {
-    width: 4rem;
-    height: 4rem;
-  }
+      width: 4rem;
+      height: 4rem;
+    }
   }
 `;
