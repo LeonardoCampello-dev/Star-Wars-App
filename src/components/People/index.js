@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 
 import { CardSection } from "../../styles/CardSection";
+import { Card } from "../../styles/Card";
 
-import {
-  PeopleCard,
-  Name,
-  WeightAndHeight,
-  HairAndSkin,
-  Gender,
-} from "./PeopleCard";
+import { Name, WeightAndHeight, HairAndSkin, Gender } from "./PeopleCard";
 
 import maleIconSVG from "./male.svg";
 import femaleIconSVG from "./female.svg";
@@ -33,7 +28,10 @@ class People extends Component {
       <CardSection>
         {this.props.data.map((person, index) => {
           return (
-            <PeopleCard>
+            <Card
+              boxShadowColor="var(--yellow-color)"
+              gridTemplateRows="repeat(4, 1fr)"
+            >
               <Name>{person.name}</Name>
 
               <WeightAndHeight>
@@ -54,7 +52,7 @@ class People extends Component {
               </HairAndSkin>
 
               <Gender>{this.checkGender(person.gender)}</Gender>
-            </PeopleCard>
+            </Card>
           );
         })}
       </CardSection>

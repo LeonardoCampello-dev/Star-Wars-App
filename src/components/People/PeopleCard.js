@@ -1,23 +1,5 @@
 import styled from "styled-components";
 
-export const PeopleCard = styled.div`
-  background-color: #222224;
-  box-shadow: 0 0.2rem 0.8rem -0.4rem var(--yellow-color);
-
-  width: 30rem;
-  height: 30rem;
-
-  border-radius: 1.6rem;
-
-  padding: 1.6rem;
-
-  display: grid;
-  grid-template-rows: repeat(4, 1fr);
-
-  justify-items: center;
-  align-items: center;
-`;
-
 export const Name = styled.h2`
   font-size: 2.4rem;
   line-height: 3.4rem;

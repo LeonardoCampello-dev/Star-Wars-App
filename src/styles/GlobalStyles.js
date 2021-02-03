@@ -7,6 +7,12 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --yellow-color: #FFE300;
     --white-color: #FEFEFE;
+
+    --frozen-color: #ADD8E6;
+    --arid-color: #C4C42B;
+    --temperate-color: #228B22;
+    --murky-color: #A8A3A3;
+    --temperate-tropical-color: #E2725B;
     
     font-size: 60%
   }
