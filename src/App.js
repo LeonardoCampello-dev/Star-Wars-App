@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import Loader from "react-loader-spinner";
+
 import Home from "./components/Home";
 import People from "./components/People";
 import Planets from "./components/Planets";
@@ -10,6 +12,8 @@ import Header from "./components/Header";
 import GlobalStyles from "./styles/GlobalStyles";
 import Container from "./styles/Container";
 
+import { LoaderContainer } from "./styles/LoaderContainer";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +21,7 @@ class App extends Component {
       people: [],
       planets: [],
       starships: [],
+      isLoading: true,
     };
   }
 
@@ -64,13 +69,15 @@ class App extends Component {
   async fetchPlanets() {
     let response = await fetch("https://swapi.dev/api/planets/?format=json");
     const data = await response.json();
-    this.setState({ planets: data.results });
+
+    if (data.results) this.setState({ planets: data.results });
   }
 
   async fetchStarships() {
     let response = await fetch("https://swapi.dev/api/starships/?format=json");
     const data = await response.json();
-    this.setState({ starships: data.results });
+
+    if (data.results) this.setState({ starships: data.results });
   }
 
   async fetchAllData() {
@@ -84,6 +91,8 @@ class App extends Component {
       await Promise.allSettled(fetchPromises).then((results) =>
         this.checkFetchErrors(results)
       );
+
+      this.setState({ isLoading: false });
     } catch (error) {
       console.error(error);
     }
@@ -99,20 +108,26 @@ class App extends Component {
         <Router>
           <Header />
 
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/people">
-              <People data={this.state.people} />
-            </Route>
-            <Route exact path="/planets">
-              <Planets data={this.state.planets} />
-            </Route>
-            <Route exact path="/starships">
-              <Starships data={this.state.starships} />
-            </Route>
-          </Switch>
+          {this.state.isLoading ? (
+            <LoaderContainer>
+              <Loader type="Circles" color="#2FBC1B" height={70} width={70} />
+            </LoaderContainer>
+          ) : (
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/people">
+                <People data={this.state.people} />
+              </Route>
+              <Route exact path="/planets">
+                <Planets data={this.state.planets} />
+              </Route>
+              <Route exact path="/starships">
+                <Starships data={this.state.starships} />
+              </Route>
+            </Switch>
+          )}
         </Router>
 
         <GlobalStyles />
