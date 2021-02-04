@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   async fetchStarships() {
-    let response = await fetch("https://swaspi.dev/api/starships/?format=json");
+    let response = await fetch("https://swapi.dev/api/starships/?format=json");
     const data = await response.json();
     this.setState({ starships: data.results });
   }
