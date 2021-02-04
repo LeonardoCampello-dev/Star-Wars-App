@@ -40,47 +40,54 @@ class People extends Component {
   }
 
   render() {
+    const { data } = this.props;
+    const { error } = this.props.data;
+
     return (
       <CardSection>
-        {this.props.data.map((person, index) => {
-          const {
-            name,
-            mass,
-            height,
-            hair_color,
-            skin_color,
-            gender,
-            created,
-          } = person;
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          data.map((person, index) => {
+            const {
+              name,
+              mass,
+              height,
+              hair_color,
+              skin_color,
+              gender,
+              created,
+            } = person;
 
-          return (
-            <Card
-              boxShadowColor="var(--yellow-color)"
-              gridTemplateRows="repeat(4, 1fr)"
-              key={index}
-            >
-              <Name>{name}</Name>
+            return (
+              <Card
+                boxShadowColor="var(--yellow-color)"
+                gridTemplateRows="repeat(4, 1fr)"
+                key={index}
+              >
+                <Name>{name}</Name>
 
-              <WeightAndHeight>
-                <div>{mass}kg</div>
-                <div>{height}cm</div>
-              </WeightAndHeight>
+                <WeightAndHeight>
+                  <div>{mass}kg</div>
+                  <div>{height}cm</div>
+                </WeightAndHeight>
 
-              <HairAndSkin>
-                <div className="hair-color">
-                  {hair_color === "n/a" || hair_color === "none"
-                    ? null
-                    : `Hair color: ${hair_color}`}
-                </div>
+                <HairAndSkin>
+                  <div className="hair-color">
+                    {hair_color === "n/a" || hair_color === "none"
+                      ? null
+                      : `Hair color: ${hair_color}`}
+                  </div>
 
-                <div className="skin-color">Skin color: {skin_color}</div>
-              </HairAndSkin>
+                  <div className="skin-color">Skin color: {skin_color}</div>
+                </HairAndSkin>
 
-              <Gender>{this.checkGender(gender)}</Gender>
-              <Created>Created on: {this.formatDate(created)}</Created>
-            </Card>
-          );
-        })}
+                <Gender>{this.checkGender(gender)}</Gender>
+                <Created>Created on: {this.formatDate(created)}</Created>
+              </Card>
+            );
+          })
+        )}
       </CardSection>
     );
   }

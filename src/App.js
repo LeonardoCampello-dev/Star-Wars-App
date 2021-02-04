@@ -20,6 +20,40 @@ class App extends Component {
     };
   }
 
+  checkFetchErrors(callResults) {
+    const fetchFunctionIndex = callResults.findIndex(
+      (results) => results.status === "rejected"
+    );
+
+    const errorMessage =
+      "We had a problem searching for data. Please, come back later!";
+
+    switch (fetchFunctionIndex) {
+      case 0:
+        return this.setState({
+          people: {
+            error: errorMessage,
+          },
+        });
+      case 1:
+        console.log(errorMessage);
+
+        return this.setState({
+          planets: {
+            error: errorMessage,
+          },
+        });
+      case 2:
+        return this.setState({
+          starships: {
+            error: errorMessage,
+          },
+        });
+      default:
+        break;
+    }
+  }
+
   async fetchPeople() {
     let response = await fetch("https://swapi.dev/api/people/?format=json");
     const data = await response.json();
@@ -34,7 +68,7 @@ class App extends Component {
   }
 
   async fetchStarships() {
-    let response = await fetch("https://swapi.dev/api/starships/?format=json");
+    let response = await fetch("https://swaspi.dev/api/starships/?format=json");
     const data = await response.json();
     this.setState({ starships: data.results });
   }
@@ -47,9 +81,11 @@ class App extends Component {
         this.fetchStarships(),
       ];
 
-      await Promise.all(fetchPromises);
+      await Promise.allSettled(fetchPromises).then((results) =>
+        this.checkFetchErrors(results)
+      );
     } catch (error) {
-      console.error(`erro: ${error}`);
+      console.error(error);
     }
   }
 
