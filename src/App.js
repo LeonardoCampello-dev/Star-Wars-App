@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   async fetchPeople() {
-    let response = await fetch("https://swapi.dev/api/people/?format=json");
+    let response = await fetch("https://swapi.dedasav/api/people/?format=json");
     const data = await response.json();
 
     if (data.results) this.setState({ people: data.results });
@@ -40,9 +40,17 @@ class App extends Component {
   }
 
   async fetchAllData() {
-    await this.fetchPeople();
-    await this.fetchPlanets();
-    await this.fetchStarships();
+    try {
+      const fetchPromises = [
+        this.fetchPeople(),
+        this.fetchPlanets(),
+        this.fetchStarships(),
+      ];
+
+      await Promise.all(fetchPromises);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async componentDidMount() {
