@@ -34,3 +34,21 @@ export const Gender = styled.div`
     height: 3.2rem;
   }
 `;
+
+export const Created = styled.div`
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+
+  background-color: #fff;
+  color: #222223;
+
+  padding: 0.6rem;
+  border-radius: 0.8rem;
+
+  position: absolute;
+
+  bottom: -0.8rem;
+  right: -0.8rem;
+
+  transform: rotate(-2deg);
+`;

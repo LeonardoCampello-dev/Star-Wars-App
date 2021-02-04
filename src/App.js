@@ -21,7 +21,7 @@ class App extends Component {
   }
 
   async fetchPeople() {
-    let response = await fetch("https://swapi.dedasav/api/people/?format=json");
+    let response = await fetch("https://swapi.dev/api/people/?format=json");
     const data = await response.json();
 
     if (data.results) this.setState({ people: data.results });
@@ -49,7 +49,7 @@ class App extends Component {
 
       await Promise.all(fetchPromises);
     } catch (error) {
-      console.error(error);
+      console.error(`erro: ${error}`);
     }
   }
 

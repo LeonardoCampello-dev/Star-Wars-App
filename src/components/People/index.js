@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 
+import { format, parseISO } from "date-fns";
+
 import { CardSection } from "../../styles/CardSection";
 import { Card } from "../../styles/Card";
 
-import { Name, WeightAndHeight, HairAndSkin, Gender } from "./PeopleCard";
+import {
+  Name,
+  WeightAndHeight,
+  HairAndSkin,
+  Gender,
+  Created,
+} from "./PeopleCard";
 
 import maleIconSVG from "./male.svg";
 import femaleIconSVG from "./female.svg";
@@ -23,11 +31,27 @@ class People extends Component {
     }
   }
 
+  formatDate(date) {
+    const newDate = parseISO(date);
+
+    const formattedDate = format(newDate, "dd/MM/yyyy");
+
+    return formattedDate;
+  }
+
   render() {
     return (
       <CardSection>
         {this.props.data.map((person, index) => {
-          const { name, mass, height, hair_color, skin_color, gender } = person;
+          const {
+            name,
+            mass,
+            height,
+            hair_color,
+            skin_color,
+            gender,
+            created,
+          } = person;
 
           return (
             <Card
@@ -53,6 +77,7 @@ class People extends Component {
               </HairAndSkin>
 
               <Gender>{this.checkGender(gender)}</Gender>
+              <Created>Created on: {this.formatDate(created)}</Created>
             </Card>
           );
         })}
