@@ -5,6 +5,8 @@ import { format, parseISO } from "date-fns";
 import { CardSection } from "../../styles/CardSection";
 import { Card } from "../../styles/Card";
 
+import NextAndPrevButton from "../Buttons/NextAndPrevButton";
+
 import {
   Name,
   WeightAndHeight,
@@ -44,51 +46,55 @@ class People extends Component {
     const { error } = this.props.data;
 
     return (
-      <CardSection>
-        {error ? (
-          <p>{error}</p>
-        ) : (
-          data.map((person, index) => {
-            const {
-              name,
-              mass,
-              height,
-              hair_color,
-              skin_color,
-              gender,
-              created,
-            } = person;
+      <>
+        <CardSection>
+          {error ? (
+            <p>{error}</p>
+          ) : (
+            data.map((person, index) => {
+              const {
+                name,
+                mass,
+                height,
+                hair_color,
+                skin_color,
+                gender,
+                created,
+              } = person;
 
-            return (
-              <Card
-                boxShadowColor="var(--yellow-color)"
-                gridTemplateRows="repeat(4, 1fr)"
-                key={index}
-              >
-                <Name>{name}</Name>
+              return (
+                <Card
+                  boxShadowColor="var(--yellow-color)"
+                  gridTemplateRows="repeat(4, 1fr)"
+                  key={index}
+                >
+                  <Name>{name}</Name>
 
-                <WeightAndHeight>
-                  <div>{mass}kg</div>
-                  <div>{height}cm</div>
-                </WeightAndHeight>
+                  <WeightAndHeight>
+                    <div>{mass}kg</div>
+                    <div>{height}cm</div>
+                  </WeightAndHeight>
 
-                <HairAndSkin>
-                  <div className="hair-color">
-                    {hair_color === "n/a" || hair_color === "none"
-                      ? null
-                      : `Hair color: ${hair_color}`}
-                  </div>
+                  <HairAndSkin>
+                    <div className="hair-color">
+                      {hair_color === "n/a" || hair_color === "none"
+                        ? null
+                        : `Hair color: ${hair_color}`}
+                    </div>
 
-                  <div className="skin-color">Skin color: {skin_color}</div>
-                </HairAndSkin>
+                    <div className="skin-color">Skin color: {skin_color}</div>
+                  </HairAndSkin>
 
-                <Gender>{this.checkGender(gender)}</Gender>
-                <Created>Created on: {this.formatDate(created)}</Created>
-              </Card>
-            );
-          })
-        )}
-      </CardSection>
+                  <Gender>{this.checkGender(gender)}</Gender>
+                  <Created>Created on: {this.formatDate(created)}</Created>
+                </Card>
+              );
+            })
+          )}
+        </CardSection>
+
+        <NextAndPrevButton />
+      </>
     );
   }
 }

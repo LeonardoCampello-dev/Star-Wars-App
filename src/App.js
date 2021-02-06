@@ -41,8 +41,6 @@ class App extends Component {
           },
         });
       case 1:
-        console.log(errorMessage);
-
         return this.setState({
           planets: {
             error: errorMessage,
