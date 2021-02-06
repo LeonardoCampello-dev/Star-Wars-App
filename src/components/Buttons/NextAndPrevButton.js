@@ -6,11 +6,20 @@ import leftArrowIconSVG from "./left-arrow.svg";
 import rightArrowIconSVG from "./right-arrow.svg";
 
 class NextAndPrevButtons extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <ButtonsContainer>
-        <img src={leftArrowIconSVG} alt="Left arrow" />
-        <img src={rightArrowIconSVG} alt="Right arrow" />
+        {this.props.prev ? (
+          <img src={leftArrowIconSVG} alt="Left arrow" />
+        ) : null}
+
+        {this.props.next ? (
+          <img src={rightArrowIconSVG} alt="Right arrow" />
+        ) : null}
       </ButtonsContainer>
     );
   }

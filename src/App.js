@@ -61,21 +61,21 @@ class App extends Component {
     let response = await fetch("https://swapi.dev/api/people/?format=json");
     const data = await response.json();
 
-    if (data.results) this.setState({ people: data.results });
+    if (data) this.setState({ people: data });
   }
 
   async fetchPlanets() {
     let response = await fetch("https://swapi.dev/api/planets/?format=json");
     const data = await response.json();
 
-    if (data.results) this.setState({ planets: data.results });
+    if (data) this.setState({ planets: data });
   }
 
   async fetchStarships() {
     let response = await fetch("https://swapi.dev/api/starships/?format=json");
     const data = await response.json();
 
-    if (data.results) this.setState({ starships: data.results });
+    if (data) this.setState({ starships: data });
   }
 
   async fetchAllData() {

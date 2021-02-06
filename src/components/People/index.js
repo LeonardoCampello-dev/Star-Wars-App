@@ -5,8 +5,6 @@ import { format, parseISO } from "date-fns";
 import { CardSection } from "../../styles/CardSection";
 import { Card } from "../../styles/Card";
 
-import NextAndPrevButton from "../Buttons/NextAndPrevButton";
-
 import {
   Name,
   WeightAndHeight,
@@ -14,6 +12,8 @@ import {
   Gender,
   Created,
 } from "./PeopleCard";
+
+import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
 
 import maleIconSVG from "./male.svg";
 import femaleIconSVG from "./female.svg";
@@ -42,8 +42,7 @@ class People extends Component {
   }
 
   render() {
-    const { data } = this.props;
-    const { error } = this.props.data;
+    const { results, error, prev, next } = this.props.data;
 
     return (
       <>
@@ -51,7 +50,7 @@ class People extends Component {
           {error ? (
             <p>{error}</p>
           ) : (
-            data.map((person, index) => {
+            results.map((person, index) => {
               const {
                 name,
                 mass,
@@ -93,7 +92,7 @@ class People extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButton />
+        <NextAndPrevButtons prev={prev} next={next} />
       </>
     );
   }

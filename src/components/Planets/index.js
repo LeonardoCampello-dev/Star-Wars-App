@@ -5,14 +5,13 @@ import { Card } from "../../styles/Card";
 
 import { Name, Population, Diameter, Climate, Terrain } from "./PlanetCard";
 
-import NextAndPrevButton from "../Buttons/NextAndPrevButton";
+import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
 
 import diameterIconSVG from "./diameter.svg";
 
 class Planets extends Component {
   render() {
-    const { data } = this.props;
-    const { error } = this.props.data;
+    const { results, error, prev, next } = this.props.data;
 
     return (
       <>
@@ -20,7 +19,7 @@ class Planets extends Component {
           {error ? (
             <p>{error}</p>
           ) : (
-            data.map((planet, index) => {
+            results.map((planet, index) => {
               const { name, population, diameter, climate, terrain } = planet;
 
               return (
@@ -58,7 +57,7 @@ class Planets extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButton />
+        <NextAndPrevButtons prev={prev} next={next} />
       </>
     );
   }

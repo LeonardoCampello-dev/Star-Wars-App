@@ -13,7 +13,7 @@ import {
   Crew,
 } from "./StarshipCard";
 
-import NextAndPrevButton from "../Buttons/NextAndPrevButton";
+import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
 
 import classIconSVG from "./tag.svg";
 import speedIconSVG from "./speed.svg";
@@ -21,8 +21,7 @@ import crewIconSVG from "./crew.svg";
 
 class Starships extends Component {
   render() {
-    const { data } = this.props;
-    const { error } = this.props.data;
+    const { results, error, prev, next } = this.props.data;
 
     return (
       <>
@@ -30,7 +29,7 @@ class Starships extends Component {
           {error ? (
             <ErrorMessage>{error}</ErrorMessage>
           ) : (
-            data.map((starship, index) => {
+            results.map((starship, index) => {
               const {
                 starship_class,
                 name,
@@ -83,7 +82,7 @@ class Starships extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButton />
+        <NextAndPrevButtons prev={prev} next={next} />
       </>
     );
   }
