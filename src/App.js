@@ -96,10 +96,6 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
-    await this.fetchAllData();
-  }
-
   render() {
     return (
       <Container>
@@ -131,6 +127,10 @@ class App extends Component {
         <GlobalStyles />
       </Container>
     );
+  }
+
+  async componentDidMount() {
+    await this.fetchAllData();
   }
 }
 

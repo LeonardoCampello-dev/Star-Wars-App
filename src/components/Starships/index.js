@@ -20,8 +20,13 @@ import speedIconSVG from "./speed.svg";
 import crewIconSVG from "./crew.svg";
 
 class Starships extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.data;
+  }
+
   render() {
-    const { results, error, prev, next } = this.props.data;
+    const { results, error, prev, next } = this.state;
 
     return (
       <>

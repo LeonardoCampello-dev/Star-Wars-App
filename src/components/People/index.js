@@ -20,6 +20,11 @@ import femaleIconSVG from "./female.svg";
 import robotIconSVG from "./robot.svg";
 
 class People extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props.data;
+  }
+
   checkGender(gender) {
     switch (gender) {
       case "n/a":
@@ -42,7 +47,7 @@ class People extends Component {
   }
 
   render() {
-    const { results, error, prev, next } = this.props.data;
+    const { results, error, prev, next } = this.state;
 
     return (
       <>
