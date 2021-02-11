@@ -8,18 +8,22 @@ import { ArrowButton } from "./ArrowButton";
 class NextOrPrevButton extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      buttonOption: this.props.buttonOption,
+      handleClick: this.props.handleClick,
+    };
   }
 
   switchToPreviousOrNextButton(option) {
     if (option === "previous") {
       return (
-        <ArrowButton onClick={this.props.handleClick}>
+        <ArrowButton onClick={this.state.handleClick}>
           <img src={leftArrowIconSVG} alt="Previous" />
         </ArrowButton>
       );
     } else if (option === "next") {
       return (
-        <ArrowButton onClick={this.props.handleClick}>
+        <ArrowButton onClick={this.state.handleClick}>
           <img src={rightArrowIconSVG} alt="Next" />
         </ArrowButton>
       );
@@ -27,7 +31,7 @@ class NextOrPrevButton extends Component {
   }
 
   render() {
-    return this.switchToPreviousOrNextButton(this.props.buttonOption);
+    return this.switchToPreviousOrNextButton(this.state.buttonOption);
   }
 }
 
