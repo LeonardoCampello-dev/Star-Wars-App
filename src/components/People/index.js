@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { format, parseISO } from "date-fns";
 
@@ -13,7 +13,8 @@ import {
   Created,
 } from "./PeopleCard";
 
-import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
+import NextOrPrevButton from "../Buttons/NextOrPrevButton";
+import { ButtonsContainer } from "../Buttons/ButtonsContainer";
 
 import maleIconSVG from "./male.svg";
 import femaleIconSVG from "./female.svg";
@@ -46,11 +47,18 @@ class People extends Component {
     return formattedDate;
   }
 
+  async fetchPreviousOrNextData(dataURL) {
+    let response = await fetch(dataURL);
+    const data = await response.json();
+
+    if (data) this.setState(data);
+  }
+
   render() {
-    const { results, error, prev, next } = this.state;
+    const { results, error, previous, next } = this.state;
 
     return (
-      <>
+      <Fragment>
         <CardSection>
           {error ? (
             <p>{error}</p>
@@ -97,8 +105,22 @@ class People extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButtons prev={prev} next={next} />
-      </>
+        <ButtonsContainer>
+          {previous ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(previous)}
+              buttonOption="previous"
+            />
+          ) : null}
+
+          {next ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(next)}
+              buttonOption="next"
+            />
+          ) : null}
+        </ButtonsContainer>
+      </Fragment>
     );
   }
 }

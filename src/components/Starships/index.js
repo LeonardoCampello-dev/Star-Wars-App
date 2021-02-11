@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { CardSection } from "../../styles/CardSection";
 import { Card } from "../../styles/Card";
@@ -13,7 +13,8 @@ import {
   Crew,
 } from "./StarshipCard";
 
-import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
+import NextOrPrevButton from "../Buttons/NextOrPrevButton";
+import { ButtonsContainer } from "../Buttons/ButtonsContainer";
 
 import classIconSVG from "./tag.svg";
 import speedIconSVG from "./speed.svg";
@@ -25,11 +26,18 @@ class Starships extends Component {
     this.state = this.props.data;
   }
 
+  async fetchPreviousOrNextData(dataURL) {
+    let response = await fetch(dataURL);
+    const data = await response.json();
+
+    if (data) this.setState(data);
+  }
+
   render() {
-    const { results, error, prev, next } = this.state;
+    const { results, error, previous, next } = this.state;
 
     return (
-      <>
+      <Fragment>
         <CardSection>
           {error ? (
             <ErrorMessage>{error}</ErrorMessage>
@@ -87,8 +95,22 @@ class Starships extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButtons prev={prev} next={next} />
-      </>
+        <ButtonsContainer>
+          {previous ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(previous)}
+              buttonOption="previous"
+            />
+          ) : null}
+
+          {next ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(next)}
+              buttonOption="next"
+            />
+          ) : null}
+        </ButtonsContainer>
+      </Fragment>
     );
   }
 }

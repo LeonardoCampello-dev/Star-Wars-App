@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { CardSection } from "../../styles/CardSection";
 import { Card } from "../../styles/Card";
 
 import { Name, Population, Diameter, Climate, Terrain } from "./PlanetCard";
 
-import NextAndPrevButtons from "../Buttons/NextAndPrevButton";
+import NextOrPrevButton from "../Buttons/NextOrPrevButton";
+import { ButtonsContainer } from "../Buttons/ButtonsContainer";
 
 import diameterIconSVG from "./diameter.svg";
 
@@ -15,11 +16,18 @@ class Planets extends Component {
     this.state = this.props.data;
   }
 
+  async fetchPreviousOrNextData(dataURL) {
+    let response = await fetch(dataURL);
+    const data = await response.json();
+
+    if (data) this.setState(data);
+  }
+
   render() {
-    const { results, error, prev, next } = this.state;
+    const { results, error, previous, next } = this.state;
 
     return (
-      <>
+      <Fragment>
         <CardSection>
           {error ? (
             <p>{error}</p>
@@ -62,8 +70,22 @@ class Planets extends Component {
           )}
         </CardSection>
 
-        <NextAndPrevButtons prev={prev} next={next} />
-      </>
+        <ButtonsContainer>
+          {previous ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(previous)}
+              buttonOption="previous"
+            />
+          ) : null}
+
+          {next ? (
+            <NextOrPrevButton
+              handleClick={() => this.fetchPreviousOrNextData(next)}
+              buttonOption="next"
+            />
+          ) : null}
+        </ButtonsContainer>
+      </Fragment>
     );
   }
 }
