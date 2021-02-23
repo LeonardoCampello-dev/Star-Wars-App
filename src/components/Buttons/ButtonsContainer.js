@@ -5,7 +5,11 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   justify-content: center;
 
+  div {
+    margin-bottom: 3.2rem;
+  }
+
   div + div {
-    margin-left: 2.4rem;
+    margin-left: 4.8rem;
   }
 `;
